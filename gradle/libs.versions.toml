@@ -9,6 +9,7 @@ coreKtx = "1.12.0"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
 composeBom = "2024.02.01"
+navigationCompose = "2.7.7"
 material3 = "1.2.0"
 runtimeLivedata = "1.6.1"
 hiltAndroid = "2.48"
@@ -40,6 +41,7 @@ ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3"}
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 material = { group = "com.google.android.material", name = "material", version = "1.10.0" }
 

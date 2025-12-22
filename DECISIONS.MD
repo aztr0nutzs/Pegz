@@ -41,3 +41,18 @@ Use of Placeholder Icons
 
 In the absence of vector assets for the bio‑lab and jungle levels, I opted to use simple Unicode symbols (DNA and leaf emojis) in the ModeSelector. They are placeholders to illustrate where future icons should appear. Once assets become available, these should be replaced with vector drawables or Composable images. This decision was necessary to deliver a complete UI without delaying on missing resources.
 
+
+2025-12-22
+Pegz Art as Source of Truth
+- Decision: Use the provided images (Pegz2.jpg, Pegz3.jpg, Pegz5.jpg) as the literal aesthetic baseline for every screen.
+- Implementation: pegz3 is the Home/HowTo backdrop, pegz5 is used for mode select + results, and pegz2 is the gameplay backdrop.
+
+Piece Fidelity
+- Decision: The “unique Pegz pieces (characters)” must be the exact ones from the art, not approximations.
+- Implementation: At runtime, we crop small bitmap regions out of pegz2.jpg and draw them as the interactive pieces.
+- Trade-off: Crop rectangles are tuned for the current pegz2.jpg resolution (832x1248). If the art changes, adjust PegzArt.kt crop boxes.
+
+Project Stabilization
+- Decision: The repository contained broken/empty Gradle modules and syntactically-invalid Kotlin (ellipses, partial imports).
+- Implementation: Collapse to a single working :app module until real module sources exist again.
+

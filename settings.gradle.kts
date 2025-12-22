@@ -12,10 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "Pegz"
 include(":app")
-include(":data")
-include(":di")
-include(":ui")
-include(":viewmodel")
-include(":model")
