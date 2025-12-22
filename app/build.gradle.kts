@@ -3,9 +3,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
-    // Hilt KSP/Compiler setup
-    kotlin("kapt")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.kotlinKapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -34,17 +33,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
     packaging {
         resources {
@@ -55,9 +54,13 @@ android {
 
 dependencies {
 
-    // Compose BOM - Use the latest stable version
-    // Replace 2024.00.00 with the actual latest stable version (e.g., 2025.01.00)
-    val composeBom = platform("androidx.compose:compose-bom:2024.00.00") // Placeholder
+    implementation(project(":ui"))
+    implementation(project(":viewmodel"))
+    implementation(project(":data"))
+    implementation(project(":di"))
+    implementation(project(":model"))
+
+    val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
@@ -69,6 +72,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.material)
     implementation(libs.runtime.livedata)
 
     // Hilt (Dependency Injection)

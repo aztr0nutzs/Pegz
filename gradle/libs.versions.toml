@@ -1,8 +1,8 @@
 [versions]
 
 # Plugins
-androidApplication = "8.2.0"
-kotlinAndroid = "1.9.0"
+androidApplication = "8.13.2"
+kotlinAndroid = "1.9.22"
 
 # Dependencies
 coreKtx = "1.12.0"
@@ -19,6 +19,13 @@ appcompat = "1.6.1"
 junit = "4.13.2"
 androidxTestExtJunit = "1.1.5"
 espressoCore = "3.5.1"
+lifecycle = "2.7.0"
+coroutines = "1.7.3"
+datastore = "1.0.0"
+billing = "6.1.0"
+playServicesAds = "22.6.0"
+playServicesGames = "19.0.0"
+playServicesAuth = "20.7.0"
 
 [libraries]
 
@@ -34,6 +41,7 @@ ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3"}
 runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+material = { group = "com.google.android.material", name = "material", version = "1.10.0" }
 
 # Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroid" }
@@ -46,6 +54,10 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
+# Lifecycle
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTestExtJunit" }
@@ -54,7 +66,18 @@ ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat"}
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+billing = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "billing" }
+play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+play-services-games = { group = "com.google.android.gms", name = "play-services-games-v2", version.ref = "playServicesGames" }
+play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "playServicesAuth" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "androidApplication" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAndroid" }
+androidLibrary = { id = "com.android.library", version.ref = "androidApplication" }
+kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinAndroid" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }

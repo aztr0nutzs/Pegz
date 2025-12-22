@@ -14,7 +14,10 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -23,13 +26,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.neon.peggame.data.BillingManager // NEW
+import com.neon.peggame.model.GameMode
 import com.neon.peggame.model.Position
 import com.neon.peggame.ui.CyberpunkTheme
 import com.neon.peggame.ui.GameScreen
 import com.neon.peggame.ui.HighScoreScreen
 import com.neon.peggame.ui.ModeSelector
-import com.neon.peggame.viewmodel.GameMode
 import com.neon.peggame.viewmodel.GameViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -62,20 +64,16 @@ fun PegNeonApp() {
         ) {
             val navController = rememberNavController()
             val activity = LocalContext.current as Activity // Get Activity for billing/ads
-            
-            // Get singleton BillingManager instance for purchase flow and premium check
-            val billingManager: BillingManager = hiltViewModel() 
+
+            var isPremium by remember { mutableStateOf(false) }
 
             NavHost(
                 navController = navController,
-                startDestination = Screen.Menu.route, 
-                modifier = Modifier.fillMaxSize(),
-                enterTransition = { slideInHorizontally(tween(400)) { it } + fadeIn(tween(400)) },
-                exitTransition = { slideOutHorizontally(tween(400)) { -it } + fadeOut(tween(400)) },
-                popEnterTransition = { slideInHorizontally(tween(400)) { -it } + fadeIn(tween(400)) },
-                popExitTransition = { slideOutHorizontally(tween(400)) { it } + fadeOut(tween(400)) }
+                startDestination = Screen.Menu.route,
+                modifier = Modifier.fillMaxSize()
             ) {
                 composable(Screen.Menu.route) { backStackEntry ->
+                    val viewModel: GameViewModel = hiltViewModel(backStackEntry)
                     ModeSelector(
                         onStartGame = { mode, emptyPosIndex ->
                             val pos = when(emptyPosIndex) {
@@ -88,14 +86,12 @@ fun PegNeonApp() {
                             navController.navigate(Screen.Game.createRoute(mode, emptyPosIndex)) {
                                 launchSingleTop = true
                             }
-                            
-                            val viewModel: GameViewModel = hiltViewModel(backStackEntry)
                             viewModel.newGame(mode, pos)
                         },
                         onViewScores = { navController.navigate(Screen.HighScores.route) },
-                        // NEW: Pass purchase logic and premium status to the ModeSelector
-                        onPurchase = { billingManager.purchasePremium(activity) },
-                        isPremiumFlow = billingManager.productDetails.collectAsState(initial = null) 
+                        // Premium flow is stubbed for now
+                        onPurchase = { isPremium = true },
+                        isPremium = isPremium
                     )
                 }
                 
