@@ -49,3 +49,17 @@ Mode Selector Overhaul: Redesigned ModeSelector to mirror the lower panels from 
 
 Additional Clean‑up: Removed unused animation imports from GameScreen. Added missing import for GameMode. Updated ModeSelector leaf emoji to avoid surrogate pair issues. Documented design decisions and reasons in DECISIONS.md.
 
+
+2025-12-22
+- Repaired project to a buildable single-module Compose app: removed broken multi-module references from settings.gradle.kts and app/build.gradle.kts.
+- Added missing AndroidManifest.xml + res/values.
+- Copied the required reference art (pegz2.jpg, pegz3.jpg, pegz5.jpg) into app/src/main/res/drawable and used them as the visual aesthetic across ALL screens.
+- Implemented a complete playable 5-row triangular peg-solitaire ruleset (tap peg -> tap empty hole two steps away; jumped peg removed).
+- Implemented runtime sprite extraction: crops the exact Pegz character faces directly out of pegz2.jpg so the in-game pieces match the provided art.
+- Built full navigation flow: Home → Mode Select → Game → Results, plus How To Play.
+- Wired all buttons and taps; added a timed mode (65s, +1s per move).
+
+How to run
+- Android Studio: open project root, Sync Gradle, Run app.
+- CLI: ./gradlew :app:assembleDebug
+

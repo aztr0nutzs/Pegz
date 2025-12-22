@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PEGZ</string>
+    <string name="start">Start</string>
+    <string name="how_to_play">How to play</string>
+    <string name="back">Back</string>
+    <string name="replay">Replay</string>
+    <string name="menu">Menu</string>
+    <string name="classic_mode">Classic</string>
+    <string name="timed_mode">Timed</string>
+</resources>
